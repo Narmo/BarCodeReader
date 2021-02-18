@@ -2,6 +2,8 @@
 
 Lightweight library which allows reading various barcode types on iOS devices. Supported barcode types are included in [`AVMetadataObject.ObjectType`](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype).
 
+Original work by Chris Greening is available here: https://github.com/cgreening/BarCodeExample.
+
 # Usage
 
 **Swift**
