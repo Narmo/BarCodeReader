@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-	s.name         = "BarCodeReader"
+	s.name         = "wBarCodeReader"
 	s.version      = "1.0.0"
 	s.summary      = "Lightweight library which allows reading various barcode types on iOS devices."
 	s.swift_version = "5.3"
