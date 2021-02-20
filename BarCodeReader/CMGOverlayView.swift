@@ -11,7 +11,7 @@
 
 import UIKit
 
-class CMGOverlayView: UIView {
+public class CMGOverlayView: UIView {
 	convenience init() {
 		self.init(frame: .zero)
 	}
@@ -34,7 +34,7 @@ class CMGOverlayView: UIView {
 		layer.fillColor = UIColor(red: 0, green: 1, blue: 0, alpha: 0.2).cgColor
 	}
 	
-	override class var layerClass: AnyClass {
+	public override class var layerClass: AnyClass {
 		return CAShapeLayer.self
 	}
 }

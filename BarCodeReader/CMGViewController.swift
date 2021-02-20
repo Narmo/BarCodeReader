@@ -13,13 +13,13 @@ import UIKit
 import AVKit
 import AVFoundation
 
-@objc protocol CMGViewControllerDelegate: NSObjectProtocol {
+@objc public protocol CMGViewControllerDelegate: NSObjectProtocol {
 	@objc func didScan(result: String)
 	@objc func didFail(error: Error)
 	@objc optional func dataTypes() -> [AVMetadataObject.ObjectType]
 }
 
-@objc class CMGViewController: UIViewController {
+@objc public class CMGViewController: UIViewController {
 	private var session: AVCaptureSession?
 	private var previewView: UIView?
 	private var previewLayer: AVCaptureVideoPreviewLayer?
@@ -27,7 +27,7 @@ import AVFoundation
 	private var loadingError: Error?
 	@objc public weak var delegate: CMGViewControllerDelegate?
 	
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 
 		session = AVCaptureSession()
@@ -112,7 +112,7 @@ import AVFoundation
 		session!.startRunning()
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
+	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		if let error = loadingError {
@@ -120,7 +120,7 @@ import AVFoundation
 		}
 	}
 	
-	override func viewDidLayoutSubviews() {
+	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		previewView?.frame = view.bounds
 		overlayView?.frame = view.bounds
@@ -133,7 +133,7 @@ import AVFoundation
 }
 
 extension CMGViewController: AVCaptureMetadataOutputObjectsDelegate {
-	func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+	public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 		if metadataObjects.count > 0 {
 			session?.stopRunning()
 			

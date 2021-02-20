@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name         = "wBarCodeReader"
-	s.version      = "1.0.0"
+	s.version      = "1.0.1"
 	s.summary      = "Lightweight library which allows reading various barcode types on iOS devices."
 	s.swift_version = "5.3"
   
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 	s.ios.deployment_target = "10.0"
 	s.ios.framework = "UIKit"
   
-	s.source       = { :git => "https://github.com/Narmo/BarCodeReader.git", :tag => "1.0.0" }
+	s.source       = { :git => "https://github.com/Narmo/BarCodeReader.git", :tag => "1.0.1" }
 	s.source_files  = "BarCodeReader"
   
 	s.requires_arc = true
