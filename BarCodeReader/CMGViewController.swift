@@ -27,7 +27,7 @@ import AVFoundation
 	private var loadingError: Error?
 	@objc public weak var delegate: CMGViewControllerDelegate?
 	
-	public override func viewDidLoad() {
+	open override func viewDidLoad() {
 		super.viewDidLoad()
 
 		session = AVCaptureSession()
@@ -112,7 +112,7 @@ import AVFoundation
 		session!.startRunning()
 	}
 	
-	public override func viewDidAppear(_ animated: Bool) {
+	open override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		if let error = loadingError {
@@ -120,7 +120,7 @@ import AVFoundation
 		}
 	}
 	
-	public override func viewDidLayoutSubviews() {
+	open override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		previewView?.frame = view.bounds
 		overlayView?.frame = view.bounds
@@ -133,7 +133,7 @@ import AVFoundation
 }
 
 extension CMGViewController: AVCaptureMetadataOutputObjectsDelegate {
-	public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+	open func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 		if metadataObjects.count > 0 {
 			session?.stopRunning()
 			

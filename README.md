@@ -4,45 +4,58 @@ Lightweight library which allows reading various barcode types on iOS devices. S
 
 Original work by Chris Greening is available here: https://github.com/cgreening/BarCodeExample.
 
+# Installation
+
+**Cocoapods**
+
+```ruby
+platform :ios, '12.0'
+use_frameworks!
+
+target 'YourTarget' do
+  pod 'wBarCodeReader'
+end
+```
+
 # Usage
 
 **Swift**
 
 ```swift
 class ViewController: UIViewController {
-	@IBOutlet weak var scanButton: UIButton!
-	@IBOutlet weak var resultLabel: UILabel!
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		scanButton.addTarget(self, action: #selector(startScanner), for: .touchUpInside)
-	}
-	
-	@objc private func startScanner() {
-		let v = CMGViewController()
-		v.delegate = self
-		present(v, animated: true, completion: nil)
-	}
+  @IBOutlet weak var scanButton: UIButton!
+  @IBOutlet weak var resultLabel: UILabel!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    scanButton.addTarget(self, action: #selector(startScanner), for: .touchUpInside)
+  }
+  
+  @objc private func startScanner() {
+    let v = CMGViewController()
+    v.delegate = self
+    present(v, animated: true, completion: nil)
+  }
 }
 
 extension ViewController: CMGViewControllerDelegate {
-	func didScan(result: String) {
-		resultLabel.text = "Scanned: \(result)"
-	}
-	
-	func didFail(error: Error) {
-		let error = error as NSError
-		
-		dismiss(animated: true) { [weak self] in
-			let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-			self?.present(alert, animated: true, completion: nil)
-		}
-	}
-	
-	func dataTypes() -> [AVMetadataObject.ObjectType] {
-		return [.qr]
-	}
+  func didScan(result: String) {
+    resultLabel.text = "Scanned: \(result)"
+  }
+  
+  func didFail(error: Error) {
+    let error = error as NSError
+    
+    dismiss(animated: true) { [weak self] in
+      let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion, preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      self?.present(alert, animated: true, completion: nil)
+    }
+  }
+  
+  func dataTypes() -> [AVMetadataObject.ObjectType] {
+    return [.qr]
+  }
 }
 ```
 
@@ -50,24 +63,24 @@ extension ViewController: CMGViewControllerDelegate {
 
 ```objc
 - (void)startScan {
-	CMGViewController *v = [[CMGViewController alloc] init];
-	v.delegate = self;
-	v.modalPresentationStyle = UIModalPresentationFormSheet;
-	[self presentViewController:v animated:true completion:nil];
+  CMGViewController *v = [[CMGViewController alloc] init];
+  v.delegate = self;
+  v.modalPresentationStyle = UIModalPresentationFormSheet;
+  [self presentViewController:v animated:true completion:nil];
 }
 
 #pragma mark - CMGViewControllerDelegate
 
 - (void)didScanWithResult:(NSString *)result {
-	DDLogDebug(@"Scanned code with result: %@", result);
+  DDLogDebug(@"Scanned code with result: %@", result);
 }
 
 - (void)didFailWithError:(NSError *)error {
-	DDLogError(@"Failed to scan code with error: %@", error);
+  DDLogError(@"Failed to scan code with error: %@", error);
 }
 
 - (NSArray<AVMetadataObjectType> *)dataTypes {
-	return @[AVMetadataObjectTypeQRCode];
+  return @[AVMetadataObjectTypeQRCode];
 }
 ```
 
