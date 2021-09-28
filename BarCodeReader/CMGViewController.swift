@@ -19,7 +19,7 @@ import AVFoundation
 	@objc optional func dataTypes() -> [AVMetadataObject.ObjectType]
 }
 
-@objc public class CMGViewController: UIViewController {
+@objc open class CMGViewController: UIViewController {
 	private var session: AVCaptureSession?
 	private var previewView: UIView?
 	private var previewLayer: AVCaptureVideoPreviewLayer?
